@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchable Select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="/js/searchableSelect.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/1.35.0/iconfont/tabler-icons.min.css"
+        integrity="sha512-tpsEzNMLQS7w9imFSjbEOHdZav3/aObSESAL1y5jyJDoICFF2YwEdAHOPdOr1t+h8hTzar0flphxR76pd0V1zQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-12">
+                <label>Simple İnput</label>
+                <input id="Users" name="Users" style="display:none;" />
+            </div>
+            <script>
+                $(() => {
+                    var searchableSelect = searchableSelectApi.Create("Users", "https://jsonplaceholder.typicode.com/users");
+                    searchableSelect
+                        .setCallbackReponseFunction((response) => {
+                            let rt = [];
+                            $.each((response), (index, item) => {
+                                rt.push({
+                                    id: item.id,
+                                    text: item.name
+                                })
+                            })
+                            return rt;
+                        });
+                })
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
